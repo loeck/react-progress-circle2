@@ -18,13 +18,6 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "files": [
-    "components/*",
-    "config/*",
-    "helpers/*",
-    "icons/*",
-    "styles/*"
-  ],
   "scripts": {
     "build:source": "rollup -c",
     "build": "del dist && mkdir dist && yarn build:source",
