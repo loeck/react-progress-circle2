@@ -1,0 +1,23 @@
+{
+  "name": "react-progress-circle-website",
+  "homepage": "https://react-window.now.sh",
+  "scripts": {
+    "build": "gatsby build",
+    "start": "gatsby develop"
+  },
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "codemirror": "^5.41.0",
+    "del-cli": "^1.1.0",
+    "gatsby": "^2.0.40",
+    "gatsby-plugin-google-fonts": "^0.0.4",
+    "gatsby-plugin-styled-components": "^3.0.1",
+    "react": "^16.6.0",
+    "react-codemirror2": "^5.1.0",
+    "react-dom": "^16.6.0",
+    "react-progress-circle2": "link:..",
+    "styled-components": "^4.0.3"
+  }
+}
