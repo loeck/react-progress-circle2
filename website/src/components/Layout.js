@@ -27,8 +27,11 @@ const GlobalStyle = createGlobalStyle`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 100px auto 0 auto;
+  margin: 100px auto;
   width: 960px;
+`
+const Content = styled.div`
+  padding: 0 20px;
 `
 
 const Layout = ({ children, title, href }) => (
@@ -39,7 +42,7 @@ const Layout = ({ children, title, href }) => (
     </Helmet>
     <Wrapper>
       <Title href={href}>{title}</Title>
-      {children}
+      <Content>{children}</Content>
     </Wrapper>
   </>
 )

@@ -9,7 +9,6 @@ import Layout from '../components/Layout'
 
 const Content = styled.div`
   display: flex;
-  padding: 20px;
   margin-top: 20px;
 
   > * + * {
@@ -21,7 +20,7 @@ const Box = styled.div`
 `
 const Hr = styled.div`
   background: black;
-  margin: 20px 0;
+  margin: 100px 0;
   height: 5px;
   width: 100%;
 `
@@ -70,9 +69,9 @@ class IndexPage extends PureComponent {
             {({ progress }) => (
               <div
                 style={{
-                  fontSize: 30,
-                  display: 'flex',
                   alignItems: 'center',
+                  display: 'flex',
+                  fontSize: 30,
                 }}
               >
                 <div
@@ -87,8 +86,38 @@ class IndexPage extends PureComponent {
             )}
           </ProgressCircle>
         </Content>
+        <Code
+          value={`<ProgressCircle
+  progress={randomValue}
+  size={200}
+  strokeWidth={5}
+>
+{({ progress }) => (
+  <div
+    style={{
+      alignItems: 'center',
+      display: 'flex',
+      fontSize: 30,
+    }}
+  >
+    <div
+      style={{
+        color: getColor(progress),
+      }}
+    >
+      {Math.round(progress)}
+    </div>
+    <div>%</div>
+  </div>
+)}
+</ProgressCircle>`}
+        />
         <Hr />
-        <Content>
+        <Content
+          style={{
+            marginBottom: 50,
+          }}
+        >
           <Box>
             <ProgressCircle
               bgColor="red"
