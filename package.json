@@ -10,6 +10,7 @@
     "Loëck Vézien <nainpuissant@gmail.com> (https://github.com/loeck)"
   ],
   "license": "MIT",
+  "homepage": "https://react-progress-circle2.surge.sh/",
   "bugs": {
     "url": "https://github.com/loeck/react-progress-circle2/issues"
   },

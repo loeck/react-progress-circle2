@@ -1,10 +1,7 @@
 module.exports = {
-  siteMetadata: {
-    title: 'react-progress-circle',
-  },
-
   plugins: [
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {

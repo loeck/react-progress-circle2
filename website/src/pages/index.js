@@ -3,24 +3,10 @@
 import React, { PureComponent } from 'react'
 import styled from 'styled-components'
 import ProgressCircle from 'react-progress-circle2'
-import { UnControlled as CodeMirror } from 'react-codemirror2'
 
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/tomorrow-night-bright.css'
-
+import Code from '../components/Code'
 import Layout from '../components/Layout'
 
-try {
-  require('codemirror/mode/jsx/jsx')
-} catch (e) {}
-
-const Title = styled.a`
-  display: block;
-  background-color: black;
-  color: white;
-  padding: 20px;
-  font-size: 30px;
-`
 const Content = styled.div`
   display: flex;
   padding: 20px;
@@ -39,28 +25,14 @@ const Hr = styled.div`
   height: 5px;
   width: 100%;
 `
-const WrapperCode = styled.div`
-  margin-top: 20px;
-`
-
-const Code = ({ value }) => (
-  <WrapperCode>
-    <CodeMirror
-      value={value}
-      options={{
-        cursorHeight: 0,
-        lineNumbers: true,
-        mode: 'jsx',
-        readOnly: true,
-        showCursorWhenSelecting: false,
-        theme: 'tomorrow-night-bright',
-      }}
-    />
-  </WrapperCode>
-)
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max))
+}
+
+function getColor(value) {
+  const hue = (120 * value) / 100
+  return `hsl(${hue}, 100%, 50%)`
 }
 
 class IndexPage extends PureComponent {
@@ -80,12 +52,14 @@ class IndexPage extends PureComponent {
     )
   }
 
+  componentWillUnmount() {
+    clearInterval(this._interval)
+  }
+
   render() {
     const { randomValue } = this.state
-
     return (
-      <Layout>
-        <Title href="https://github.com/loeck/react-progress-circle2">react-progress-circle2</Title>
+      <Layout title="react-progress-circle2" href="https://github.com/loeck/react-progress-circle2">
         <Content
           style={{
             justifyContent: 'center',
@@ -93,13 +67,22 @@ class IndexPage extends PureComponent {
           }}
         >
           <ProgressCircle progress={randomValue} size={200} strokeWidth={5}>
-            {(progress, v) => (
+            {({ progress }) => (
               <div
                 style={{
                   fontSize: 30,
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
-                {progress}
+                <div
+                  style={{
+                    color: getColor(progress),
+                  }}
+                >
+                  {Math.round(progress)}
+                </div>
+                <div>%</div>
               </div>
             )}
           </ProgressCircle>
@@ -126,14 +109,14 @@ class IndexPage extends PureComponent {
           </Box>
           <Box>
             <ProgressCircle progress={40} size={100}>
-              {progress => progress}
+              {({ progress }) => progress}
             </ProgressCircle>
             <Code
               value={`<ProgressCircle
   progress={40}
   size={100}
 >
-  {progress => progress}
+  {({ progress }) => progress}
 </ProgressCircle>`}
             />
           </Box>
@@ -153,32 +136,31 @@ class IndexPage extends PureComponent {
             />
           </Box>
           <Box>
-            <ProgressCircle progress={40} size={100} progressLabel={v => `${v} w00t!`}>
-              {progress => (
+            <ProgressCircle progress={40} size={100}>
+              {({ progress }) => (
                 <div
                   style={{
                     color: 'red',
                     fontSize: 9,
                   }}
                 >
-                  {progress}
+                  {progress} w00t!
                 </div>
               )}
             </ProgressCircle>
             <Code
               value={`<ProgressCircle
   progress={40}
-  progressLabel={v => ${'`${v} w00t!`'}}
   size={100}
 >
-  {progress => (
+  {({ progress }) => (
     <div
       style={{
         color: 'red',
         fontSize: 9,
       }}
     >
-      {progress}
+      {progress} w00t!
     </div>
   )}
 </ProgressCircle>

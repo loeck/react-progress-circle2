@@ -1,4 +1,6 @@
 *.log
+.cache
+dist
+public
 node_modules
 package-lock.json
-dist

@@ -1,5 +1,4 @@
-dist/*
-website/build/*
-website/src/code/*
+dist
+public
 package-lock.json
 yarn.lock

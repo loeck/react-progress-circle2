@@ -1,5 +1,8 @@
 import React from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
+import Helmet from 'react-helmet'
+
+import Title from './title'
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -28,10 +31,16 @@ const Wrapper = styled.div`
   width: 960px;
 `
 
-const Layout = ({ children }) => (
+const Layout = ({ children, title, href }) => (
   <>
     <GlobalStyle />
-    <Wrapper>{children}</Wrapper>
+    <Helmet>
+      <title>{title}</title>
+    </Helmet>
+    <Wrapper>
+      <Title href={href}>{title}</Title>
+      {children}
+    </Wrapper>
   </>
 )
 

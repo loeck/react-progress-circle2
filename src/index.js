@@ -24,7 +24,6 @@ type Props = {
   children: any,
   progress: number,
   progressColor: string,
-  progressLabel: number => any,
   size: number,
   strokeWidth: number,
 }
@@ -34,7 +33,6 @@ const ProgressCircle = ({
   children,
   progress,
   progressColor,
-  progressLabel,
   size,
   strokeWidth,
 }: Props) => {
@@ -58,32 +56,33 @@ const ProgressCircle = ({
         width: size,
       }}
     >
+      {typeof children === 'function' ? (
+        <Spring
+          to={{
+            progress,
+          }}
+        >
+          {children}
+        </Spring>
+      ) : (
+        children
+      )}
       <Spring
         native
         to={{
           offset: circleDash * (1 - progress / 100),
-          progress,
         }}
       >
-        {({ offset, progress }) => (
-          <>
-            {typeof children === 'function'
-              ? children(
-                  <animated.div>
-                    {progress.interpolate(v => progressLabel(Math.round(v)))}
-                  </animated.div>,
-                )
-              : children}
-            <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={STYLE_SVG}>
-              <circle {...circleProps} stroke={bgColor} />
-              <animated.circle
-                {...circleProps}
-                stroke={progressColor}
-                strokeDasharray={circleDash}
-                strokeDashoffset={offset.interpolate(v => v)}
-              />
-            </svg>
-          </>
+        {({ offset }) => (
+          <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={STYLE_SVG}>
+            <circle {...circleProps} stroke={bgColor} />
+            <animated.circle
+              {...circleProps}
+              stroke={progressColor}
+              strokeDasharray={circleDash}
+              strokeDashoffset={offset.interpolate(v => v)}
+            />
+          </svg>
         )}
       </Spring>
     </div>
@@ -94,7 +93,6 @@ ProgressCircle.defaultProps = {
   bgColor: 'rgba(165, 180, 186, 0.4)',
   progress: 0,
   progressColor: '#a5b4ba',
-  progressLabel: v => `${v}%`,
   size: 40,
   strokeWidth: 2,
 }

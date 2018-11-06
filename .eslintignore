@@ -1,6 +1,5 @@
 dist
-website/build
-website/node_modules
+public
 node_modules
 package-lock.json
 yarn.lock
