@@ -1,6 +1,6 @@
 {
   "name": "react-progress-circle2",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/loeck/react-progress-circle2.git"
@@ -32,11 +32,11 @@
     "prettier": "prettier --write '**/*.js'"
   },
   "peerDependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
+    "@babel/runtime": "^7.1.5",
     "react-spring": "^6.1.6"
   },
   "devDependencies": {
